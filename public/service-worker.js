@@ -19,6 +19,7 @@ const FILES_TO_CACHE = [
     '/icons/icon-512x512.png'
 ];
 
+//installs the service worker
 self.addEventListener('install', function (e) {
     e.waitUntil(
         caches.open(CACHE_NAME).then(function (cache) {
@@ -29,6 +30,7 @@ self.addEventListener('install', function (e) {
 
 });
 
+//activates the service worker
 self.addEventListener('activate', function (e) {
     e.waitUntil(
         caches.keys().then(function (keyList) {
@@ -49,6 +51,7 @@ self.addEventListener('activate', function (e) {
     );
 });
 
+//fetches serviceworker
 self.addEventListener('fetch', function (e) {
     if (e.request.url.includes('/api/')) {
         e.respondWith(
